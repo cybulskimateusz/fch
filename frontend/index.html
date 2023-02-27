@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style.css" media="screen" />
+    <script type="text/javascript" src="./dat.gui.min.js"></script>
+</head>
+<body>
+    <script id="fragment" type="text/plain">
+
+        precision mediump float;
+
+        varying vec2 vTextureCoord;
+
+        uniform sampler2D uSampler;
+        uniform sampler2D gradient;
+
+        uniform float time;
+
+        void main(void) {
+
+            vec4 maskColor = texture2D(uSampler, vTextureCoord);
+
+            vec2 uv;
+            uv.x = maskColor.r;
+            uv.y = vTextureCoord.y;
+
+            vec4 videoColor = texture2D(gradient, uv);
+            gl_FragColor = videoColor;
+
+        }
+    </script>
+    <div id="main"></div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.0.2/browser/pixi.min.js"></script>
+    <script src="./lodash.js"></script>
+    <script src="./demo.js"></script>
+    <script src="./heat.js"></script>
+    <script src="./main.js"></script>
+    <script src="./PointsCounter.js"></script>
+
+</body>
+</html>
